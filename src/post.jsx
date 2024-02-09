@@ -8,3 +8,6 @@ export function Post(props){
     </p></div>
     )
 }
+
+
+	
