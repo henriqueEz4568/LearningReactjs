@@ -8,14 +8,21 @@ import viteLogo from '/vite.svg'
 import './App.css'*/
 import './global.css'
 export function App() {
-  return (
+  return (<div>
+    <Header />
     <div className={styles.wrapper}>
-      <Header />
-  <Sidebar />    
-<Post
-author='fulano'
-content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos veniam quisquam provident incidunt enim a itaque dicta corrupti cum consequatur, magnam recusandae iusto quidem, eligendi ducimus modi atque delectus voluptas." />
-     
+      <Sidebar />    
+ <main>     
+ <Post
+            author="Diego Fernandes"
+            content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime itaque quas corporis beatae veritatis, reprehenderit asperiores vitae quod possimus qui dignissimos unde deleniti consequatur quae, repellat debitis sunt, est rerum!"
+          />
+          <Post
+            author="Gabriel Buzzi"
+            content="Um novo post muito legal"
+          />
+          </main>
+    </div>
     </div>
   )
 }
