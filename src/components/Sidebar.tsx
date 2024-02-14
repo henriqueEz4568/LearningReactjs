@@ -9,8 +9,8 @@ export function Sidebar() {
       />
 
       <div className={styles.profile}>
-      <img className={styles.avatar} src="https://github.com/diego3g.png" />
-        <strong>Diego Fernandes</strong>
+      <img className={styles.avatar} src="https://github.com/henriqueEz4568.png" />
+        <strong>Henrique Espinoza</strong>
         <span>Web Developer</span>
       </div>
 
