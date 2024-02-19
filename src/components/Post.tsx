@@ -21,6 +21,14 @@ setNovoComentarioTexto('')
 
 }
 
+
+function bagunca(){
+  for(i=0;i<5;i++){
+    handleCrateNewComment()
+  }
+}
+
+
 function handleNewCommentChange(){
   event?.preventDefault()
   setNovoComentarioTexto(event?.target.value)
@@ -32,13 +40,17 @@ locale: ptBR,
 addSuffix: true});
 
 
-function deleteComment(comment) {
-  console.log(`Deletar comentário ${comment}`)
-}
+function deleteComment(commentToDelete) {
+  const commentsWithoutDeletedOne = comments.filter(comment => {
+    return comment !== commentToDelete;
+})
+    setComments(commentsWithoutDeletedOne);}
 
 
-
-
+    //const isNewCommentEmpty = newCommentText.length === 0;
+    function handleNewCommentInvalid() {
+      event.target.setCustomValidity('Esse campo é obrigatório!');
+    }
 
 
 
@@ -66,7 +78,7 @@ function deleteComment(comment) {
           }
         })}
       </div>
-      <form onSubmit={handleCrateNewComment}  className={styles.commentForm}>
+      <form onSubmit={handleCrateNewComment}   className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
         <textarea name='comment'
           placeholder="Deixe um comentário"
@@ -74,7 +86,7 @@ function deleteComment(comment) {
           onChange={handleNewCommentChange}
         />
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" >Publicar</button>
         </footer>
       </form>
 
