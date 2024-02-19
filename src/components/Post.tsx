@@ -1,27 +1,45 @@
 import { Comment } from './Comment';
 import styles from './Post.module.css';
-import { format, formatDistanceToNow } from 'date-fns';
+import { format, formatDistanceToNow, set } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { useState } from 'react';
 
 
 export function Post({author, publishedAt,content}) { 
-const [comments, setComments] = useState(["comment"]);
+const [comments, setComments] = useState(["CR7 the goat"]);
+const[novoComentarioTexto,setNovoComentarioTexto]=useState('')
 const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {locale: ptBR,});
 
 function handleCrateNewComment() {
     event.preventDefault()
 const newComment=event.target.comment.value
 setComments([...comments, newComment]);
-console.log(newComment)
+setNovoComentarioTexto('')
+//console.log(newComment)
 
 //console.log(newComment,comments )
 
 }
 
+function handleNewCommentChange(){
+  event?.preventDefault()
+  setNovoComentarioTexto(event?.target.value)
+  console.log(novoComentarioTexto)
+}
+
 const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
 locale: ptBR,
 addSuffix: true});
+
+
+function deleteComment(comment) {
+  console.log(`Deletar comentário ${comment}`)
+}
+
+
+
+
+
 
 
   return (
@@ -48,10 +66,12 @@ addSuffix: true});
           }
         })}
       </div>
-      <form onSubmit={handleCrateNewComment} className={styles.commentForm}>
+      <form onSubmit={handleCrateNewComment}  className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
         <textarea name='comment'
           placeholder="Deixe um comentário"
+          value={novoComentarioTexto}
+          onChange={handleNewCommentChange}
         />
         <footer>
           <button type="submit">Publicar</button>
@@ -59,9 +79,11 @@ addSuffix: true});
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
+       
         {comments.map(comment => {
-          return <Comment   content={comment}/>
+          return <Comment 
+          onDeleteComment={deleteComment}
+          content={comment}/>
         })}
       </div>
     </article>
