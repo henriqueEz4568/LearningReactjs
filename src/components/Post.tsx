@@ -31,9 +31,14 @@ function bagunca(){
 
 function handleNewCommentChange(){
   event?.preventDefault()
+  event.target.setCustomValidity('');
   setNovoComentarioTexto(event?.target.value)
-  console.log(novoComentarioTexto)
+  
 }
+function handleNewCommentInvalid() {
+  event.target.setCustomValidity('Esse campo é obrigatório!');
+}
+
 
 const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
 locale: ptBR,
@@ -84,6 +89,8 @@ function deleteComment(commentToDelete) {
           placeholder="Deixe um comentário"
           value={novoComentarioTexto}
           onChange={handleNewCommentChange}
+          onInvalid={handleNewCommentInvalid}
+          required
         />
         <footer>
           <button type="submit" >Publicar</button>
